@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block style %}
+{% endblock %}
+{% block content %}
+<div id="map" style="width: 100%;height: 91.7%;margin-top:-1.5%"></div>
+        <link rel="stylesheet" href="https://d19vzq90twjlae.cloudfront.net/leaflet-0.7/leaflet.css" />
+    <script src="https://d19vzq90twjlae.cloudfront.net/leaflet-0.7/leaflet.js">
+    </script>
+    <script>
+  var planes = [
+    ["Noida TNG <br>Bharti Airtel Ltd, B-38/C-1, Noida Sector 57, Noida - 201301",28.5355,77.3910],
+    ["Chennai TNG <br>Bharti Airtel Ltd, Slot No.F8,Sipcot IT Park, 2nd Floor, Padur post, Kanchipuram Dist.Seruseri, Chennai",13.0827,79.7707],
+    ["Mohali TNG <br>C 25, Industrial Area, Phase-2, Mohali, Punjab",30.7046,76.7179],
+    ["Mumbai TNG <br>4th floor 4th dimension mind space near Toyota show room Malad west 400064.",19.0760,72.8777],
+    ["Mumbai ANG <br>Bharti Airtel Ltd, Interface Building No-7, 6th floor, Opp  Ijmima Bldg, Link Road, Malad (W), Mumbai -400 064",19.0760,72.1777],
+    ["Chennai ANG <br>Bharti Airtel Ltd, Chennai 101, Bharti Towers Santhome High Road Near south canal bank road,ch-28",13.0827,80.1707],
+    ["Delhi-ANG <br>Bharti Airtel Ltd, 224 Okhla Phase-3, New Delhi -110020",28.7041,77.1025],
+    ["Bangalore <br>Bharti Airtel Limited 1106/10 &11 Garavebhavipalya  7 Mile Hosur road Bangalore , 560068",12.9716,77.59466],
+    ["Hyderabad <br>Bharti Airtel Limited , Plot no:3&3a,APIIC Industrial park,Uppal Mandal Municipality.Landmark:Devinder Nagar Colony,Backside of uppal Metro station , Pin:500039",17.385017,78.4867],
+    ["Bhopal <br>Airtel Office,First Floor, Malviya Nagar, Bhopal",23.2599,77.4126],
+    ["Kolkata <br>Telisonic Airtel Ltd, Meera Tower, 3rd Floor Plot No. - 27, Block - DN Sector V , Salt Lake, Kolkata - 700 091 under Globsyn Building, 2nd Floor",22.5726,88.3639],
+    ["Patna <br> Bharti Airtel Limited,Plot 18, patliputra industrial Area , patliputra , Patna-8000",25.5941,85.7736],
+    ["Jaipur <br>Bharti Hexacom Ltd., B2C-Rajasthan, MSC, Plot No.-216 , Road No.10 , Near Mangla Sariya, VKIA, Jaipur 302013",26.9124,75.7873],
+    ["Patna NEW <br>Bharti Airtel Limited ,Plot 18, patliputra industrial Area , patliputra , Patna-8000",25.5941,85.1736]
+    ];
+
+        var map = L.map('map').setView([23.2599,77.4126], 5);
+        mapLink =
+            '<a href="http://openstreetmap.org">OpenStreetMap</a>';
+        L.tileLayer(
+            'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; ' + mapLink + ' Contributors',
+            maxZoom: 18,
+            }).addTo(map);
+
+    for (var i = 0; i < planes.length; i++) {
+      marker = new L.marker([planes[i][1],planes[i][2]])
+        .bindPopup(planes[i][0])
+        .addTo(map);
+    }
+    </script>
+{% endblock %}
+
+{% block script %}
+{% endblock script %}
