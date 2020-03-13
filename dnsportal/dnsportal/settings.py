@@ -11,9 +11,10 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import mysql
+# import django
+# django.setup()
 
-#mysql.install_as_MySQLdb()
+
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'dns_database',
 ]
 
 MIDDLEWARE = [
@@ -86,10 +88,10 @@ WSGI_APPLICATION = 'dnsportal.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'dbuser',
+        'NAME': 'dns_inventory',
         'USER': 'root',
-        'PASSWORD': 'Root@123',
-        'HOST': '172.30.1.211',
+        'PASSWORD': 'admin',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
 }

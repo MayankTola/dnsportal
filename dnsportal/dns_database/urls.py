@@ -19,13 +19,6 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.login_page, name='LoginPage'),
-    path('accounts/login', views.login_page, name='LoginPage'),
-    path("accounts/register", views.register_view, name = "Register"),
-    path('accounts/logout', views.logout_view, name = "logout"),
-    path('home/', views.home, name='Home'),
-    path('dns_lookup/', views.dns_lookup, name='DnsLookup'),
-    path('lookup_results/', views.lookup_results, name='Lookup_Results'),
-    path('inventory_database/', include('dns_database.urls')),
+    # path('', views.inventory_form, name='InventoryForm'),
+    path('', views.inventory_results, name='InventoryResult'),
 ]
