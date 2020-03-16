@@ -19,6 +19,6 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-    # path('', views.inventory_form, name='InventoryForm'),
-    path('', views.inventory_results, name='InventoryResult'),
+    path('', views.inventory_form, name='InventoryForm'),
+    url(r'view', views.inventory_view, name='InventoryView'),
 ]

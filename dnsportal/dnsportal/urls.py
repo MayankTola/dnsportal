@@ -27,5 +27,6 @@ urlpatterns = [
     path('home/', views.home, name='Home'),
     path('dns_lookup/', views.dns_lookup, name='DnsLookup'),
     path('lookup_results/', views.lookup_results, name='Lookup_Results'),
-    path('inventory_database/', include('dns_database.urls')),
+    path('inventory_form/', include('dns_database.urls')),
+    url(r'inventory/', include('dns_database.urls')),
 ]

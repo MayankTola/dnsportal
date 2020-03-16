@@ -24,5 +24,8 @@ class vip_details(models.Model):
     virtual_ip = models.GenericIPAddressField(max_length=50)
     description = models.CharField(max_length=20)
 
+    # def __str__(self):
+    #     return self.management_ip
+
     class Meta:
         db_table = "vip_details"

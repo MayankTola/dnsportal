@@ -37,7 +37,11 @@ def inventory_form(request):
 #     data.save()
 
 
-def inventory_results(request):
-    obj=vip_details.objects.get()
-    mp=obj.management_ip
-    return render(request, "inventory_results.html", {"obj":mp})
+def inventory_view(request):
+    obj=vip_details.objects.filter()
+    print(type(obj))
+    # mp=obj.management_ip
+    # vp=obj.virtual_ip
+    # des=obj.description
+    # print(list(obj))
+    return render(request, "inventory_results.html", {"obj":obj})

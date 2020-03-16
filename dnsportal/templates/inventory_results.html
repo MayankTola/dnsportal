@@ -2,10 +2,15 @@
 
 
 {% block content %}
+{{ obj.management_ip }}
 <table>
+
 {% for line in obj %}
-    <ol>{{ line }}</ol>
+
+    <ol>{{ line.virtual_ip }}</ol>
+    <ol>{{ line.description }}</ol>
 {% endfor %}
+
 </table>
 {% endblock %}
 
