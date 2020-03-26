@@ -20,5 +20,8 @@ from . import views
 
 urlpatterns = [
     path('', views.inventory_form, name='InventoryForm'),
-    url(r'view', views.inventory_view, name='InventoryView'),
+    path(r'view', views.inventory_view, name='InventoryView'),
+    path(r'delete/<int:id>', views.inventory_delete, name='InventoryDelete'),
+    path(r'edit/<int:id>', views.inventory_edit, name='InventoryEdit'),
+    path(r'edit/update/<int:id>', views.inventory_update, name='InventoryUpdate'),
 ]

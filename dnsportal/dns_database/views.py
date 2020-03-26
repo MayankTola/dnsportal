@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from .inventory_form import *
@@ -11,17 +11,53 @@ from .remote_login import *
 
 @login_required()
 def inventory_form(request):
-    form=site_form()
-    # form = site_form(request.POST)
+    form = site_form()
     if request.method == "POST":
+        form = site_form(request.POST)
         if form.is_valid():
-            raw=form.cleaned_data
-            data=site_details(location=raw['location'],management_ip=raw['management_ip'],site_address=raw['site_address'],spoc_name1=raw['spoc_name1'],spoc_contact1=raw['spoc_contact1'],spoc_name2=raw['spoc_name2'],spoc_contact2=raw['spoc_contact2'])
+            raw = form.cleaned_data
+            print(raw)
+            data = site_details(location=raw['location'], management_ip=raw['management_ip'],
+                                site_address=raw['site_address'], spoc_name1=raw['spoc_name1'],
+                                spoc_contact1=raw['spoc_contact1'], spoc_name2=raw['spoc_name2'],
+                                spoc_contact2=raw['spoc_contact2'])
+            print(data)
             data.save()
         else:
             print(form.errors)
-
     return render(request, "inventory_form.html", {"form": form})
+
+
+@login_required()
+def inventory_view(request):
+    content = site_details.objects.all()
+    return render(request, "inventory_results.html", {'content': content})
+
+
+@login_required()
+def inventory_edit(request, id):
+    content = site_details.objects.get(id=id)
+    return render(request, 'inventory_edit.html', {'content': content})
+
+
+@login_required()
+def inventory_update(request, id):
+    content = site_details.objects.get(id=id)
+    form = site_form(request.POST, instance=content)
+    if form.is_valid():
+        form.save()
+        return redirect("/inventory/view")
+    return render(request, 'inventory_edit.html', {'content': content})
+
+
+@login_required()
+def inventory_delete(request, id):
+    try:
+        content = site_details.objects.get(id=id)
+    except site_details.DoesNotExist:
+        return redirect("/inventory/view")
+    content.delete()
+    return redirect("/inventory/view")
 
 # host = '10.227.219.36'
 # port = 22
@@ -35,13 +71,3 @@ def inventory_form(request):
 # for i in range(0,int(len(stdoutstring)),2):
 #     data = vip_details(management_ip=host,virtual_ip=stdoutstring[i+1],description=stdoutstring[i])
 #     data.save()
-
-
-def inventory_view(request):
-    obj=vip_details.objects.filter()
-    print(type(obj))
-    # mp=obj.management_ip
-    # vp=obj.virtual_ip
-    # des=obj.description
-    # print(list(obj))
-    return render(request, "inventory_results.html", {"obj":obj})
