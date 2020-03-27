@@ -15,14 +15,13 @@ def inventory_form(request):
     if request.method == "POST":
         form = site_form(request.POST)
         if form.is_valid():
-            raw = form.cleaned_data
-            print(raw)
-            data = site_details(location=raw['location'], management_ip=raw['management_ip'],
-                                site_address=raw['site_address'], spoc_name1=raw['spoc_name1'],
-                                spoc_contact1=raw['spoc_contact1'], spoc_name2=raw['spoc_name2'],
-                                spoc_contact2=raw['spoc_contact2'])
-            print(data)
-            data.save()
+            # raw = form.cleaned_data
+            # data = site_details(location=raw['location'], management_ip=raw['management_ip'],
+            #                     site_address=raw['site_address'], spoc_name1=raw['spoc_name1'],
+            #                     spoc_contact1=raw['spoc_contact1'], spoc_name2=raw['spoc_name2'],
+            #                     spoc_contact2=raw['spoc_contact2'])
+            # data.save()
+            form.save()
         else:
             print(form.errors)
     return render(request, "inventory_form.html", {"form": form})
@@ -45,6 +44,7 @@ def inventory_update(request, id):
     content = site_details.objects.get(id=id)
     form = site_form(request.POST, instance=content)
     if form.is_valid():
+        print(form.cleaned_data)
         form.save()
         return redirect("/inventory/view")
     return render(request, 'inventory_edit.html', {'content': content})
@@ -52,10 +52,7 @@ def inventory_update(request, id):
 
 @login_required()
 def inventory_delete(request, id):
-    try:
-        content = site_details.objects.get(id=id)
-    except site_details.DoesNotExist:
-        return redirect("/inventory/view")
+    content = site_details.objects.get(id=id)
     content.delete()
     return redirect("/inventory/view")
 

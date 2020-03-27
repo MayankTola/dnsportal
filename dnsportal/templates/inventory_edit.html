@@ -2,7 +2,7 @@
 
 
 {% block content %}
-<form method="POST" class="post-form" action="update/{{content.id}}">
+<form method="POST" class="post-form" action="/inventory/edit/update/{{content.id}}">
         {% csrf_token %}
     <div class="container">
 <br>
@@ -15,46 +15,46 @@
     <div class="form-group row">
     <label class="col-sm-2 col-form-label">Management ip:</label>
     <div class="col-sm-4">
-        <input type="text" name="eid" id="id_eid" required maxlength="20" value="{{ content.management_ip }}"/>
+        <input type="text" name="management_ip"  required maxlength="20" value="{{ content.management_ip }}"/>
     </div>
   </div>
   <div class="form-group row">
     <label class="col-sm-2 col-form-label">Location:</label>
     <div class="col-sm-4">
-        <input type="text" name="ename" id="id_ename" required maxlength="100" value="{{ content.location  }}" />
+        <input type="text" name="location"  required maxlength="100" value="{{ content.location  }}" />
     </div>
   </div>
     <div class="form-group row">
     <label class="col-sm-2 col-form-label">Site Address:</label>
     <div class="col-sm-4">
-        <input type="text" name="text" id="address" required maxlength="254" value="{{ content.site_address }}" />
+        <input type="text" name="site_address"  required maxlength="254" value="{{ content.site_address }}" />
     </div>
   </div>
     <div class="form-group row">
     <label class="col-sm-2 col-form-label">Spoc Name 1:</label>
     <div class="col-sm-4">
-        <input type="text" name="econtact" id="id_econtact" required maxlength="15" value="{{ content.spoc_name1 }}" />
+        <input type="text" name="spoc_name1" required maxlength="15" value="{{ content.spoc_name1 }}" />
     </div>
   </div>
 
     <div class="form-group row">
     <label class="col-sm-2 col-form-label">Spoc Contact 1:</label>
     <div class="col-sm-4">
-        <input type="text" name="econtact" id="id_econtact" required maxlength="15" value="{{ content.spoc_contact1 }}" />
+        <input type="text" name="spoc_contact1" required maxlength="15" value="{{ content.spoc_contact1 }}" />
     </div>
   </div>
 
     <div class="form-group row">
     <label class="col-sm-2 col-form-label">Spoc Name 2:</label>
     <div class="col-sm-4">
-        <input type="text" name="econtact" id="id_econtact" required maxlength="15" value="{{ content.spoc_name2 }}" />
+        <input type="text" name="spoc_name2"  required maxlength="15" value="{{ content.spoc_name2 }}" />
     </div>
   </div>
 
     <div class="form-group row">
     <label class="col-sm-2 col-form-label">Spoc Contact 2:</label>
     <div class="col-sm-4">
-        <input type="text" name="econtact" id="id_econtact" required maxlength="15" value="{{ content.spoc_contact2 }}" />
+        <input type="text" name="spoc_contact2"  required maxlength="15" value="{{ content.spoc_contact2 }}" />
     </div>
   </div>
 
@@ -66,6 +66,7 @@
   </div>
     </div>
 </form>
+
 
 {% endblock %}
 
