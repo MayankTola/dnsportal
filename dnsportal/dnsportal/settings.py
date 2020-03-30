@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'dns_database',
+    'handover_form'
 ]
 
 MIDDLEWARE = [

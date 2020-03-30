@@ -59,7 +59,7 @@ def home(request):
 # Functions for dns_lookup functionality
 @login_required()
 def dns_lookup(request):
-    return render(request, "dns_lookup.html")
+    return render(request, "dns_lookup/dns_lookup.html")
 
 
 # Functions for dns_lookup results
@@ -76,7 +76,7 @@ def lookup_results(request):
     query = "sh /home/Abhilash/nand/nntest.sh " + domain + ' ' + location + ' ' + qt
     (stdoutstring, stderrstring) = execute_ssh_command(host, port, username, password, None, None, query)
     context = {'output': stdoutstring}
-    return render(request, "lookup_results.html", context)
+    return render(request, "dns_lookup/lookup_results.html", context)
 
 
 
