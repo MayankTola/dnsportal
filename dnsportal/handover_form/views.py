@@ -14,6 +14,7 @@ def handover_form(request):
         form = HandOver_form(request.POST)
         if form.is_valid():
             form.save()
+            return redirect("/handover_form")
         else:
             print(form.errors)
     return render(request, "handover_form/handover_form.html", {"form": form})
@@ -28,14 +29,15 @@ def handover_view(request):
 @login_required()
 def handover_edit(request, id):
     content = handover_details.objects.get(id=id)
-    return render(request, 'handover_form/handover_edit.html', {'content': content})
+    form = HandOver_form(request.POST or None, instance=content)
+    return render(request, 'handover_form/handover_update.html', {'form': form, 'content': content})
 
 
 @login_required()
 def handover_update(request, id):
     content = handover_details.objects.get(id=id)
-    form = HandOver_form(request.POST, instance=content)
+    form = HandOver_form(request.POST or None, instance=content)
     if form.is_valid():
         form.save()
         return redirect("/handover_form/view")
-    return render(request, 'handover_form/handover_edit.html', {'content': content})
+    return render(request, 'handover_form/handover_update.html', {'form': form, 'content': content})
