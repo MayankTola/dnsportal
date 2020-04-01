@@ -55,6 +55,20 @@ body {
 		padding-top: 10px;
 	}
 }
+button{
+margin: 2px 40%;
+vertical-align: middle;
+font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+font-weight: normal;
+font-size: 13px;
+background: #79aec8;
+padding: 10px 15px;
+border: none;
+border-radius: 4px;
+color: #fff;
+cursor: pointer;
+-webkit-appearance: none;
+}
 </style>
 <body>
 <div id="header">
@@ -74,7 +88,7 @@ body {
         <h2 class="form-signin-heading">{{title}}</h2>
         {{form.as_p }}
         </label><br>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">{{title}}</button>
+        <button  type="submit">{{title}}</button>
         <br>
         {% if title == "Login" %}<h5>Not Registered? <a href = "/accounts/register">Register Here</a></h5>{% endif %}
         {% if title == "Register" %}<h5>Already Registered? <a href = "/accounts/login">Login Here</a></h5>{% endif %}

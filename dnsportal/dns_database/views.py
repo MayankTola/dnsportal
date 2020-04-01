@@ -14,7 +14,7 @@ from .remote_login import *
 def inventory_form(request):
     form = site_form()
     if request.method == "POST":
-        form = site_form(request.POST)
+        form = site_form(request.POST or None)
         if form.is_valid():
             form.save()
         else:
@@ -31,13 +31,14 @@ def inventory_view(request):
 @login_required()
 def inventory_edit(request, id):
     content = site_details.objects.get(id=id)
-    return render(request, 'inventory_edit.html', {'content': content})
+    form = site_form(request.POST or None, instance=content)
+    return render(request, 'inventory_edit.html', {'content': content, 'form': form})
 
 
 @login_required()
 def inventory_update(request, id):
     content = site_details.objects.get(id=id)
-    form = site_form(request.POST, instance=content)
+    form = site_form(request.POST or None, instance=content)
     if form.is_valid():
         form.save()
         return redirect("/inventory/view")
