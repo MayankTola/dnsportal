@@ -6,13 +6,10 @@ from django import forms
 from django.shortcuts import render
 from .remote_login import *
 
-
-
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .login_forms import UsersLoginForm
 from .login_forms import UsersRegisterForm
-
 
 
 def login_page(request):
@@ -23,7 +20,7 @@ def login_page(request):
         user = authenticate(username=username, password=password)
         login(request, user)
         return redirect("/home/")
-    return render(request, "login_form.html", {
+    return render(request, "login/login_form.html", {
         "form": form,
         "title": "Login",
     })
@@ -39,17 +36,16 @@ def register_view(request):
         new_user = authenticate(username=user.username, password=password)
         login(request, new_user)
         return redirect("/accounts/login")
-    return render(request, "login_form.html", {
+    return render(request, "login/login_form.html", {
         "title": "Register",
         "form": form,
     })
 
 
 def logout_view(request):
-	logout(request)
-	return HttpResponseRedirect("/")
-
-
+    logout(request)
+    # return HttpResponseRedirect("/")
+    return render(request, "login/logout.html")
 
 @login_required()
 def home(request):
@@ -77,7 +73,3 @@ def lookup_results(request):
     (stdoutstring, stderrstring) = execute_ssh_command(host, port, username, password, None, None, query)
     context = {'output': stdoutstring}
     return render(request, "dns_lookup/lookup_results.html", context)
-
-
-
-

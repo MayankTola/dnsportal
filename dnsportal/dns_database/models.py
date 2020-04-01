@@ -10,9 +10,9 @@ class site_details(models.Model):
     location = models.CharField(max_length=20)
     site_address = models.CharField(max_length=50)
     spoc_name1 = models.CharField(max_length=20)
-    spoc_contact1 = models.CharField(max_length=13)
+    spoc_contact1 = models.CharField(max_length=20)
     spoc_name2 = models.CharField(max_length=20)
-    spoc_contact2 = models.CharField(max_length=13)
+    spoc_contact2 = models.CharField(max_length=20)
 
     class Meta:
         db_table = "site_details"
