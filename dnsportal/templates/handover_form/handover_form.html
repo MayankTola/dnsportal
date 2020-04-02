@@ -21,11 +21,12 @@ body {
 
 
 {% block content %}
-      <form class="form" method = 'POST' action= '.' value="save" style="margin-top:-2%;width:50%;height:121%">
+      <form class="form" method = 'POST' action= '.' value="save" style="margin-top:-2%;width:50%;height:150%">
 
         <h2 class="form-heading">Handover Form</h2>
           {{ form.as_p}}
           {% csrf_token %}
+          <br>
           <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
         <br>
       </form>

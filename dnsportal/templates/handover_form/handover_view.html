@@ -2,6 +2,7 @@
 
 {% block style %}
 <style type="text/css">
+
 .dot_active {
   height: 15px;
   width: 15px;
@@ -17,13 +18,26 @@
   border-radius: 50%;
   display: inline-block;
 }
+
+#myInput {
+  display: inline-block;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
+
 </style>
 {% endblock style %}
 
 {% block content %}
 
-<title>Site Details</title>
-<table class="table table-striped table-bordered table-sm">
+
+<H1 style="margin-left:41%;width:50%">Handover Details</H1>
+<input type="text" id="myInput" class="form-control" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+<table id="myTable" class="table table-striped table-bordered table-sm">
     <thead class="thead-dark">
     <tr>
         <th>ID</th>
@@ -35,6 +49,8 @@
         <th>Submitted By</th>
         <th>Assigned To</th>
         <th>Submitted Date</th>
+        <th>Last Updated By</th>
+        <th>Last Updated Date</th>
         <th>Status</th>
         <th>Actions</th>
     </tr>
@@ -51,6 +67,8 @@
         <td>{{ content.submitted_by }}</td>
         <td>{{ content.assigned_to }}</td>
         <td>{{ content.submitted_date}}</td>
+        <td>{{ content.last_updated_by}}</td>
+        <td>{{ content.last_updated_date}}</td>
         <td>{% if content.status == "Active" %}<span class="dot_active"></span>{{ content.status}}{% endif %}
         {% if  content.status == "Closed" %}<span class="dot_closed"></span>{{ content.status}}{% endif %}</td>
         <td>
@@ -61,6 +79,26 @@
     </tbody>
 </table>
 
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
 {% endblock %}
 
 

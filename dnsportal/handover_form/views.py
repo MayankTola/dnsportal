@@ -11,7 +11,7 @@ from .models import *
 def handover_form(request):
     form = HandOver_form()  # form called from forms.py
     if request.method == "POST":
-        form = HandOver_form(request.POST)
+        form = HandOver_form(request.POST or None)
         if form.is_valid():
             form.save()
             return redirect("/handover_form")

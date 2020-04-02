@@ -21,8 +21,10 @@ class handover_details(models.Model):
     summary = models.CharField(blank=True, max_length=100)
     submitted_by = models.CharField(blank=True, max_length=20)
     assigned_to = models.CharField(blank=True, max_length=20)
-    submitted_date = models.DateField(default=datetime.date.today)
+    submitted_date = models.DateTimeField()
     status = models.CharField(max_length=10, choices=status_choices, default='Active')
+    last_updated_by = models.CharField(blank=True, max_length=20)
+    last_updated_date = models.DateTimeField()
 
     class Meta:
         db_table = "handover_details"
