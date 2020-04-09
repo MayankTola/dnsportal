@@ -21,9 +21,15 @@ def handover_form(request):
 
 
 @login_required()
-def handover_view(request):
-    content = handover_details.objects.all()
-    return render(request, "handover_form/handover_view.html", {'content': content})
+def handover_view(request, func):
+    if func == "ravpn":
+        a = "RAVPN"
+    elif func == "dns":
+        a = "DNS"
+    else:
+        a = "Network Devices"
+    content = handover_details.objects.filter(function=a)
+    return render(request, "handover_form/handover_view.html", {'content': content, 'title': a})
 
 
 @login_required()
@@ -38,6 +44,13 @@ def handover_update(request, id):
     content = handover_details.objects.get(id=id)
     form = HandOver_form(request.POST or None, instance=content)
     if form.is_valid():
+        a = form.cleaned_data['function']
+        if a == "RAVPN":
+            b = 'ravpn'
+        elif a == "DNS":
+            b = 'dns'
+        else:
+            b = 'network'
         form.save()
-        return redirect("/handover_form/view")
+        return redirect("/handover_form/view/" + b)
     return render(request, 'handover_form/handover_update.html', {'form': form, 'content': content})

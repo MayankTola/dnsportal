@@ -1,6 +1,8 @@
 from django import forms
 from .models import *
-from bootstrap_datepicker_plus import DateTimePickerInput
+
+
+# from bootstrap_datepicker_plus import DateTimePickerInput
 
 
 # class DateTimeInput(forms.DateTimeInput):
@@ -20,7 +22,7 @@ class HandOver_form(forms.ModelForm):
             'incident_ticket': forms.TextInput(attrs={'class': "form-control"}),
             'vendor_ticket': forms.TextInput(attrs={'class': "form-control"}),
             'problem_statement': forms.TextInput(attrs={'class': "form-control"}),
-            'summary': forms.TextInput(attrs={'class': "form-control"}),
+            'summary': forms.Textarea(attrs={'class': "form-control"}),
             'submitted_by': forms.TextInput(attrs={'class': "form-control"}),
             'assigned_to': forms.TextInput(attrs={'class': "form-control"}),
             'submitted_date': forms.TextInput(
@@ -29,4 +31,5 @@ class HandOver_form(forms.ModelForm):
             'last_updated_by': forms.TextInput(attrs={'class': "form-control"}),
             'last_updated_date': forms.TextInput(
                 attrs={'class': "form-control", 'type': 'datetime', 'placeholder': 'YYYY-MM-DD HH:MM:SS'}),
+            'resolution': forms.Textarea(attrs={'class': "form-control"}),
         }
