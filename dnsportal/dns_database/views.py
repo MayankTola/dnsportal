@@ -25,14 +25,15 @@ def inventory_form(request):
 @login_required()
 def inventory_view(request):
     content = site_details.objects.all()
-    return render(request, "inventory_results.html", {'content': content})
+    title = 'Site'
+    return render(request, "database/inventory_view.html", {'content': content, 'title':title})
 
 
 @login_required()
 def inventory_edit(request, id):
     content = site_details.objects.get(id=id)
     form = site_form(request.POST or None, instance=content)
-    return render(request, 'inventory_edit.html', {'content': content, 'form': form})
+    return render(request, 'database/inventory_update.html', {'content': content, 'form': form})
 
 
 @login_required()
@@ -42,7 +43,7 @@ def inventory_update(request, id):
     if form.is_valid():
         form.save()
         return redirect("/inventory/view")
-    return render(request, 'inventory_edit.html', {'content': content})
+    return render(request, 'database/inventory_update.html', {'content': content})
 
 
 @login_required()

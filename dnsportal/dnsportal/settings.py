@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dns_database',
     'handover_form'
+    # 'bootstrap4',
+    # 'bootstrap_datepicker_plus',
 ]
 
 MIDDLEWARE = [
@@ -140,3 +142,5 @@ STATICFILES_DIRS = [
 ]
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static_cdn')
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'files')
+MEDIA_URL = '/files/'

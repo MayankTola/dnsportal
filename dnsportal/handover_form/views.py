@@ -1,6 +1,9 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from pyexpat.errors import messages
+
 from .forms import *
 from .models import *
 
@@ -11,9 +14,12 @@ from .models import *
 def handover_form(request):
     form = HandOver_form()  # form called from forms.py
     if request.method == "POST":
-        form = HandOver_form(request.POST or None)
+        form = HandOver_form(request.POST or None, request.FILES)
         if form.is_valid():
             form.save()
+            # messages.info(request, 'Your password has been changed successfully!')
+
+            # return HttpResponse("File uploaded successfuly")
             return redirect("/handover_form")
         else:
             print(form.errors)
@@ -53,4 +59,6 @@ def handover_update(request, id):
             b = 'network'
         form.save()
         return redirect("/handover_form/view/" + b)
+    else:
+        print(form.errors)
     return render(request, 'handover_form/handover_update.html', {'form': form, 'content': content})

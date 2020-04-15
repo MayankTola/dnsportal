@@ -58,8 +58,10 @@
         <th>Submitted Date</th>
         <th>Last Updated By</th>
         <th>Last Updated Date</th>
+        <th>File</th>
         <th>Status</th>
         <th>Actions</th>
+
     </tr>
     </thead>
     <tbody>
@@ -74,6 +76,7 @@
         <td>{{ content.submitted_date}}</td>
         <td>{{ content.last_updated_by}}</td>
         <td>{{ content.last_updated_date}}</td>
+        <td>{{ content.file}}</td>
         <td>{% if content.status == "Active" %}<span class="dot_active"></span>{{ content.status}}{% endif %}
         {% if  content.status == "Closed" %}<span class="dot_closed"></span>{{ content.status}}{% endif %}</td>
         <td>
