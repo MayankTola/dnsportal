@@ -27,4 +27,3 @@ class HandOver_form(forms.ModelForm):
                        last_updated_by=forms.TextInput(attrs={'class': "form-control"}),
                        last_updated_date=forms.TextInput(attrs={'class': "form_datetime", 'id': 'date-field'}),
                        resolution=forms.Textarea(attrs={'class': "form-control"}))
-                       # file=forms.FileField(attrs={'class': "form-control"}))

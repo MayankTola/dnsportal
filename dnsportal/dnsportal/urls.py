@@ -21,15 +21,17 @@ from django.urls import path, include
 from . import views
 
 urlpatterns = [
-                  path('admin/', admin.site.urls),
-                  path('', views.login_page, name='LoginPage'),
-                  path('accounts/login', views.login_page, name='LoginPage'),
-                  path("accounts/register", views.register_view, name="Register"),
-                  path('accounts/logout', views.logout_view, name="logout"),
-                  path('home/', views.home, name='Home'),
-                  path('dns_lookup/', views.dns_lookup, name='DnsLookup'),
-                  path('lookup_results/', views.lookup_results, name='Lookup_Results'),
-                  path('inventory_form/', include('dns_database.urls')),
-                  url(r'inventory/', include('dns_database.urls')),
-                  url(r'handover_form/', include('handover_form.urls')),
-              ]
+    path('admin/', admin.site.urls),
+    path('', views.login_page, name='LoginPage'),
+    path('accounts/login', views.login_page, name='LoginPage'),
+    path("accounts/register", views.register_view, name="Register"),
+    path('accounts/logout', views.logout_view, name="logout"),
+    path('home/', views.home, name='Home'),
+    path('dns_lookup/', views.dns_lookup, name='DnsLookup'),
+    path('lookup_results/', views.lookup_results, name='Lookup_Results'),
+    path('inventory_form/', include('dns_database.urls')),
+    url(r'inventory/', include('dns_database.urls')),
+    url(r'handover_form/', include('handover_form.urls')),
+]
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

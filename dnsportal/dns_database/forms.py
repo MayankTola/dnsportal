@@ -19,4 +19,12 @@ class site_form(forms.ModelForm):
 
 
 class virtual_form(forms.Form):
-    management_ip = forms.GenericIPAddressField(required=True, widget=forms.TextInput(attrs={"class": "form-control"}))
+    class Meta:
+        model = virtual_server
+        fields = "__all__"
+        widgets = {
+              'management_ip': forms.TextInput(attrs={'class': "form-control"}),
+              'virtual_ip': forms.TextInput(attrs={'class': "form-control"}),
+              'description': forms.TextInput(attrs={'class': "form-control"}),
+
+        }

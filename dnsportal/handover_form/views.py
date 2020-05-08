@@ -10,6 +10,7 @@ from .models import *
 
 # Create your views here.
 
+
 @login_required()
 def handover_form(request):
     form = HandOver_form()  # form called from forms.py
@@ -17,9 +18,6 @@ def handover_form(request):
         form = HandOver_form(request.POST or None, request.FILES)
         if form.is_valid():
             form.save()
-            # messages.info(request, 'Your password has been changed successfully!')
-
-            # return HttpResponse("File uploaded successfuly")
             return redirect("/handover_form")
         else:
             print(form.errors)
@@ -29,13 +27,13 @@ def handover_form(request):
 @login_required()
 def handover_view(request, func):
     if func == "ravpn":
-        a = "RAVPN"
+        title = "RAVPN"
     elif func == "dns":
-        a = "DNS"
+        title = "DNS"
     else:
-        a = "Network Devices"
-    content = handover_details.objects.filter(function=a)
-    return render(request, "handover_form/handover_view.html", {'content': content, 'title': a})
+        title = "Network Devices"
+    content = handover_details.objects.filter(function=title)
+    return render(request, "handover_form/handover_view.html", {'content': content, 'title': title})
 
 
 @login_required()
@@ -48,12 +46,12 @@ def handover_edit(request, id):
 @login_required()
 def handover_update(request, id):
     content = handover_details.objects.get(id=id)
-    form = HandOver_form(request.POST or None, instance=content)
+    form = HandOver_form(request.POST or None, request.FILES, instance=content)
     if form.is_valid():
-        a = form.cleaned_data['function']
-        if a == "RAVPN":
+        func_type = form.cleaned_data['function']
+        if func_type == "RAVPN":
             b = 'ravpn'
-        elif a == "DNS":
+        elif func_type == "DNS":
             b = 'dns'
         else:
             b = 'network'

@@ -26,7 +26,7 @@ class handover_details(models.Model):
     last_updated_by = models.CharField(blank=True, max_length=20)
     last_updated_date = models.DateTimeField()
     resolution = models.TextField(blank=True, max_length=5000)
-    file = models.FileField(upload_to='files/', default="", blank=True,)
+    file = models.FileField(blank=True)
 
     class Meta:
         db_table = "handover_details"

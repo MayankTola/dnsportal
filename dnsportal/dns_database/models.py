@@ -18,11 +18,11 @@ class site_details(models.Model):
         db_table = "site_details"
 
 
-class vip_details(models.Model):
+class virtual_server(models.Model):
 
     management_ip = models.GenericIPAddressField(max_length=50)
     virtual_ip = models.GenericIPAddressField(max_length=50)
-    description = models.CharField(max_length=20)
+    description = models.CharField(max_length=100)
 
     class Meta:
-        db_table = "vip_details"
+        db_table = "virtual_server"
