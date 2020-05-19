@@ -6,6 +6,7 @@ from django import forms
 from django.shortcuts import render
 from .remote_login import *
 
+
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .login_forms import UsersLoginForm
@@ -73,3 +74,5 @@ def lookup_results(request):
     (stdoutstring, stderrstring) = execute_ssh_command(host, port, username, password, None, None, query)
     context = {'output': stdoutstring}
     return render(request, "dns_lookup/lookup_results.html", context)
+
+

@@ -32,6 +32,7 @@ urlpatterns = [
     path('inventory_form/', include('dns_database.urls')),
     url(r'inventory/', include('dns_database.urls')),
     url(r'handover_form/', include('handover_form.urls')),
+    url(r'schedule/', include('schedule.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

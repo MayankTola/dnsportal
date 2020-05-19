@@ -19,7 +19,7 @@ def inventory_form(request):
             form.save()
         else:
             print(form.errors)
-    return render(request, "inventory_form.html", {"form": form})
+    return render(request, "database/inventory_form.html", {"form": form})
 
 
 @login_required()
@@ -63,7 +63,7 @@ def virtual_form(request):
             form.save()
         else:
             print(form.errors)
-    return render(request, "inventory_form.html", {"form": form})
+    return render(request, "database/inventory_form.html", {"form": form})
 
 
 
