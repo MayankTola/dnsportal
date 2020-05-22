@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dns_database',
     'handover_form',
-    'schedule'
+    'roster'
     # 'bootstrap4',
     # 'bootstrap_datepicker_plus',
 ]

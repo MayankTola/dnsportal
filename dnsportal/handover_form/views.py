@@ -50,13 +50,27 @@ def handover_update(request, id):
     if form.is_valid():
         func_type = form.cleaned_data['function']
         if func_type == "RAVPN":
-            b = 'ravpn'
+            val = 'ravpn'
         elif func_type == "DNS":
-            b = 'dns'
+            val = 'dns'
         else:
-            b = 'network'
+            val = 'network'
         form.save()
-        return redirect("/handover_form/view/" + b)
+        return redirect("/handover_form/view/" + val)
     else:
         print(form.errors)
     return render(request, 'handover_form/handover_update.html', {'form': form, 'content': content})
+
+
+@login_required()
+def handover_delete(request, id):
+    content = handover_details.objects.get(id=id)
+    # content1 = handover_details.objects.filter(id=id)
+    content.delete()
+    if content.function == "RAVPN":
+        val = 'ravpn'
+    elif content.function == "DNS":
+        val = 'dns'
+    else:
+        val = 'network'
+    return redirect("/handover_form/view/"+val)

@@ -81,6 +81,7 @@
         {% if  content.status == "Closed" %}<span class="dot_closed"></span>{{ content.status}}{% endif %}</td>
         <td>
             <a href="/handover_form/edit/{{ content.id }}"><span class="glyphicon glyphicon-pencil"> Edit</span></a>
+            {% if request.user.is_superuser %}<a href="/handover_form/delete/{{ content.id }}"><span class="glyphicon glyphicon-pencil"> Delete</span></a>{% endif %}
         </td>
     </tr>
 {% endfor %}

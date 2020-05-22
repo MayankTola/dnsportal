@@ -22,6 +22,7 @@ from . import views
 
 urlpatterns = [
     path('', views.handover_form, name='HandoverForm'),
+    path(r'delete/<int:id>', views.handover_delete, name='HandoverDelete'),
     path(r'view/<slug:func>', views.handover_view, name='HandoverView'),
     path(r'edit/<int:id>', views.handover_edit, name='HandoverEdit'),
     path(r'edit/update/<int:id>', views.handover_update, name='HandoverUpdate'),

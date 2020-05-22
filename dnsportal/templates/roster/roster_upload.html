@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+
+<style>
+
+body {
+	background: #eee !important;
+}
+
+#date-field{
+  display:block;width:100%;height:34px;padding:6px 12px;font-size:14px;line-height:1.42857143;
+  color:#555;background-color:#fff;background-image:none;
+  border:1px solid #ccc;border-radius:4px;
+    }
+
+.form {
+
+  padding: 20px 35px;
+  margin: 0 auto ;
+  background-color: #fff;
+  margin-top:10%;
+  width:40%;
+  height: auto
+  border: 1px solid rgba(0,0,0,0.1);
+  		@include box-sizing(border-box);
+		&:focus {
+		  z-index: 2;
+		}
+
+  .form-heading,
+	.checkbox {
+	  margin-bottom: 30px;
+	}
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<form class="form" method = 'POST' action= '.' enctype="multipart/form-data">
+          <h2 class="form-heading">Schedule</h2>
+          {{ form.as_p}}
+          {% csrf_token %}
+          <br>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+        <br>
+      </form>
+
+
+{% endblock %}

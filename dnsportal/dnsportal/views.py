@@ -35,8 +35,8 @@ def register_view(request):
         user.set_password(password)
         user.save()
         new_user = authenticate(username=user.username, password=password)
-        login(request, new_user)
-        return redirect("/accounts/login")
+        # login(request, new_user)
+        return redirect("/home")
     return render(request, "login/login_form.html", {
         "title": "Register",
         "form": form,

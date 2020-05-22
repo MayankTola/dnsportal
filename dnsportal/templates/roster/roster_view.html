@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+
+<style>
+
+body {
+	background: #eee !important;
+}
+
+#date-field{
+  display:block;width:100%;height:34px;padding:6px 12px;font-size:14px;line-height:1.42857143;
+  color:#555;background-color:#fff;background-image:none;
+  border:1px solid #ccc;border-radius:4px;
+    }
+
+.form {
+
+  padding: 15px 35px;
+  margin: 0 auto ;
+  background-color: #fff;
+  margin-top:-2%;
+  width:50%;
+  height: auto
+  border: 1px solid rgba(0,0,0,0.1);
+  		@include box-sizing(border-box);
+		&:focus {
+		  z-index: 2;
+		}
+
+  .form-heading,
+	.checkbox {
+	  margin-bottom: 30px;
+	}
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<img src="{{ myimg.file.url }}" class="img-responsive" style="width: 100%; float: center; margin-top: -2%;" />
+
+
+
+{% endblock %}
